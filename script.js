@@ -1,3 +1,4 @@
+// TODO bir de şunu unuttum ki mobil cihazlarda hover özelliği yok, onun için silme ve editleme butonlarını başka şekilde halledicez, ach!
 const listOfItems = document.getElementById("listOfItems");
 const addMenu = document.getElementById("addMenu");
 const addButton = document.getElementById("addButton");
