@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+}
+
+body {
+  background-color: aliceblue;
+  color: black;
+}
+/* dark mode ile ilgili özellikler. */
+body.dark-mode {
+  background-color: #121212;
+  color: #fff;
+  filter: brightness(0.7);
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="date"],
+body.dark-mode select {
+  background-color: #121212;
+  color: #fff;
+}
+body.dark-mode .add-menu {
+  background-color: rgb(77, 95, 127);
+}
+body.dark-mode button {
+  color: white;
+}
+
+body.dark-mode header {
+  background-color: rgb(57, 60, 168);
+}
+
+body.dark-mode .delete-modal {
+  background-color: #121212;
+}
+body.dark-mode .edit-panel {
+  background-color: #121212;
+}
+body.dark-mode #editCloseButton {
+  color: #fff;
+}
+
+body.dark-mode .settings{
+  background-color: #121212;
+}
+
+/* dark mode sonu */
+header {
+  display: flex;
+  flex-direction: row;
+  font-family: "Quicksand", sans-serif;
+  background-color: rgb(144, 186, 255);
+}
+
+.header-elements {
+  padding: 1rem;
+  font-size: larger;
+  font-weight: 800;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1rem;
+}
+.filter-button {
+  font-size: medium;
+  padding: 0.6rem;
+}
+.filter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: flex-end;
+}
+.top-buttons {
+  margin-right: auto;
+}
+button {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgba(146, 144, 255, 0.634);
+  font-size: large;
+  cursor: pointer;
+  z-index: 1000;
+}
+.todo-items {
+  padding: 1rem;
+  margin-left: 1.2rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgb(176, 202, 254);
+  width: max-content;
+  border-radius: 1rem;
+  background-color: rgba(176, 202, 254, 0.315);
+  z-index: -100;
+}
+#listOfItems {
+  list-style: none;
+}
+
+.hidden {
+  opacity: 0;
+}
+.add-menu {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  flex-direction: column;
+  height: fit-content;
+  gap: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(176, 202, 254);
+  background-color: rgb(206, 221, 249);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  min-width: 200px;
+  width: fit-content;
+}
+.add-menu-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.4rem;
+}
+.add-menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+input[type="text"],
+input[type="date"],
+select {
+  border: 1px solid rgb(176, 202, 254);
+  border-radius: 0.3rem;
+  padding-left: 0.3rem;
+  height: 2rem;
+}
+label {
+  font-size: 1rem;
+}
+input[type="checkbox"] {
+  z-index: -1;
+}
+.visual-checkbox {
+  max-width: 1rem;
+  max-height: 1rem;
+  width: auto;
+  padding: 0.2rem;
+  padding-left: 1.4rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  border: 1px solid;
+  border-color: rgb(77, 145, 255);
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
+  cursor: pointer;
+  position: relative;
+}
+.visual-checkbox-clicked {
+  max-width: 1rem;
+  max-height: 1rem;
+  width: auto;
+  padding: 0.2rem;
+  padding-left: 1.4rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  background-color: rgba(77, 145, 255, 0.6);
+  border: 1px solid;
+  border-color: rgb(77, 145, 255);
+}
+.open {
+  animation: fadeIn 0.2s ease;
+}
+.close {
+  animation: fadeOut 0.2s ease;
+}
+.element-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  position: relative;
+  z-index: 0;
+  width: min-content;
+}
+.delete-buttons,
+.edit-buttons {
+  margin-bottom: 1.7rem;
+  align-self: flex-end;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  padding: 0.4rem;
+  border-radius: 0.7rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: fadeOut 0.3s ease-in-out;
+}
+.edit-buttons {
+  background-color: rgb(0, 157, 255);
+}
+.edit-panel {
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.173);
+  border-radius: 1rem;
+  z-index: 1001;
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  padding: 1rem;
+}
+.delete-modal-container {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  width: 100vw;
+}
+.delete-modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 15pt;
+}
+.dm-body {
+  margin-bottom: 0.5rem;
+}
+.delete-modal {
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.173);
+  border-radius: 1rem;
+  z-index: 1001;
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  padding: 1rem;
+}
+.edit-panel-container {
+  /* todo: js'de burayı kontrol edeceğiz */
+  display: none;
+  position: absolute;
+  justify-content: center;
+  width: 100vw;
+}
+.edit-panel-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.edit-panel-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15pt;
+  padding-bottom: 1rem;
+}
+#editCloseButton {
+  color: black;
+  text-decoration: none;
+}
+#editCloseButton:hover {
+  text-decoration: underline;
+}
+#deleteCloseButton {
+  cursor: pointer;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* %50 karanlık */
+  z-index: 999; /* edit panelin altına gelmesin */
+  display: none;
+}
+.element-container:hover .delete-buttons {
+  opacity: 1;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.element-container:hover .edit-buttons {
+  opacity: 1;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.task-description {
+  display: block;
+  font-size: small;
+  margin-left: 2.7rem;
+  margin-top: 0.3rem;
+}
+.additional-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-left: 2.7rem;
+}
+.task-duedate {
+  display: block;
+  font-size: small;
+  margin-top: 0.3rem;
+  padding: 0.2rem;
+  background-color: rgba(0, 0, 0, 0.199);
+  width: max-content;
+  border-radius: 0.4rem;
+}
+.task-urgency {
+  display: block;
+  font-size: small;
+  margin-top: 0.3rem;
+  padding: 0.2rem;
+  background-color: rgba(0, 0, 0, 0.199);
+  width: max-content;
+  border-radius: 0.4rem;
+}
+.search-input {
+  width: 100%;
+  display: flex;
+}
+.settings-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.settings-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1002;
+}
+.settings {
+  width: 200px;
+  justify-self: center;
+  align-items: center;
+  background-color: white;
+  z-index: 1002;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.settings-header{
+  font-size: 15pt;
+}
+.settings-content{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+#addButton,
+#settingsButton {
+  align-self: flex-start;
+  z-index: 0;
+}
+#settingsCloseButton{
+    cursor: pointer;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+ @media (min-width:425px) {
+  .add-menu{
+    max-width: 300px;
+    width: 300px;
+  }
+ }
