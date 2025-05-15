@@ -35,7 +35,7 @@ const deviceDarkMode = window.matchMedia(
 ).matches;
 let taskBeingEdited = null;
 let taskBeingDeleted = null;
-
+// TODO: aslında şey yapılabilir, eğer additional content'e koyadacak bir şey yok ise additional-content display: none olsun.
 // TODO: details diye bi kısım olsun title ve description dışındaki her şeyi oraya koyalım, bide delete şeyini hoverle olan bişe yerine direk tikin altına koyabiliriz
 if (Notification.permission === "default") {
   Notification.requestPermission();
@@ -260,6 +260,9 @@ const showTasks = (taskList) => {
     checkbox.style.width = "1.7rem";
     checkbox.style.height = "1.7rem";
     visualCheckbox.classList.add("visual-checkbox");
+    if (task.deadline === '' && task.category == '' && task.urgency ==''){
+      additionalContainer.style.display = 'none';
+    }
     // visualCheckboxContainer.classList.add('vcb');
     // todo: daha sonradan şu wrapping text muhabbetini çözmek için bu sınıfa ihtiyaç duyulabilir
     // bu elementleri şimdi ekrana ekliyoruz
@@ -277,6 +280,8 @@ const showTasks = (taskList) => {
     additionalContainer.appendChild(duedate);
     additionalContainer.appendChild(urgency);
     additionalContainer.appendChild(category);
+
+    
 
     if (task.urgency === "high") {
       urgency.textContent = "High ‼️";
