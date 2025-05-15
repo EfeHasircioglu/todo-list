@@ -261,7 +261,7 @@ const showTasks = (taskList) => {
     checkbox.style.height = "1.7rem";
     visualCheckbox.classList.add("visual-checkbox");
     if (task.deadline === '' && task.category == '' && task.urgency ==''){
-      additionalContainer.style.display = 'none';
+      additionalContainer.style.display = 'none'; // bu sıkıntı çıkarabilir, eğer hiçbir elemennte görünmesse başka çözüm arayacağız
     }
     // visualCheckboxContainer.classList.add('vcb');
     // todo: daha sonradan şu wrapping text muhabbetini çözmek için bu sınıfa ihtiyaç duyulabilir
