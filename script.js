@@ -57,7 +57,7 @@ const urgencyMap = {
 };
 let tasks = [
   {
-    text: "Welcome to a to-do list app, but this not just any to-do list app.",
+    text: "Welcome to my to-do list app!",
     description: "Go around to explore the app.",
     deadline: new Date().toLocaleDateString("tr"),
     urgency: "high",
@@ -222,30 +222,38 @@ const showTasks = (taskList) => {
     let element = document.createElement("li");
     let description = document.createElement("span");
     let additionalContainer = document.createElement("div");
+    //yandaki edit ve delete butonlarının containeri
+    let manButContainer = document.createElement("div");
     let duedate = document.createElement("span");
     let urgency = document.createElement("span");
     let category = document.createElement("span");
     let checkbox = document.createElement("input");
     let visualCheckbox = document.createElement("span");
+    let visualCheckboxContainer = document.createElement("span");
     let title = document.createElement("span");
     let deleteButton = document.createElement("a");
     let editButton = document.createElement("a");
     elementContainer.classList.add("element-container");
-    deleteButton.innerHTML = "Delete";
+    deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="16" width="24" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>`;
     deleteButton.classList.add("delete-buttons");
-    editButton.innerHTML = "Edit";
+    editButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 125.7-86.8 86.8c-10.3 10.3-17.5 23.1-21 37.2l-18.7 74.9c-2.3 9.2-1.8 18.8 1.3 27.5L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"/></svg>`;
     editButton.classList.add("edit-buttons");
     deleteButton.href = "javascript:void(0);";
     editButton.href = "javascript:void(0);";
     checkbox.type = "checkbox";
+    manButContainer.classList.add('manupilative-buttons-container');
     element.classList.add("todo-items");
     description.classList.add("task-description");
     duedate.classList.add("task-duedate");
     urgency.classList.add("task-urgency");
     category.classList.add("task-urgency");
     category.classList.add("task-category");
+    title.style.display = 'flex-inline'; // title texti overflow olduğu zaman çirkin görünüyor, bu sorun çözülecek
+    checkbox.style.height = '100%';
     additionalContainer.classList.add("additional-container");
     title.textContent = task.text;
+    title.style.overflowWrap = "break-word";
+    title.style.wordBreak = "break-word";
     description.textContent = task.description;
     duedate.textContent = task.deadline;
     checkbox.style.opacity = 0;
@@ -253,19 +261,24 @@ const showTasks = (taskList) => {
     checkbox.style.width = "1.7rem";
     checkbox.style.height = "1.7rem";
     visualCheckbox.classList.add("visual-checkbox");
+    // visualCheckboxContainer.classList.add('vcb');
+    // todo: daha sonradan şu wrapping text muhabbetini çözmek için bu sınıfa ihtiyaç duyulabilir
     // bu elementleri şimdi ekrana ekliyoruz
     listOfItems.appendChild(elementContainer);
     elementContainer.appendChild(element);
+    elementContainer.appendChild(manButContainer);
+    manButContainer.appendChild(deleteButton);
+        manButContainer.appendChild(editButton);
     element.appendChild(checkbox);
-    element.appendChild(visualCheckbox);
+    element.appendChild(visualCheckboxContainer)
+    visualCheckboxContainer.appendChild(visualCheckbox);
     element.appendChild(title);
     element.appendChild(description);
     element.appendChild(additionalContainer);
     additionalContainer.appendChild(duedate);
     additionalContainer.appendChild(urgency);
     additionalContainer.appendChild(category);
-    elementContainer.appendChild(deleteButton);
-    elementContainer.appendChild(editButton);
+
     if (task.urgency === "high") {
       urgency.textContent = "High ‼️";
     } else if (task.urgency === "medium") {
@@ -392,6 +405,8 @@ if (localStorage.getItem("darkMode") === "enabled") {
 const savedTasks = localStorage.getItem("efesTasks");
 if (savedTasks) {
   tasks = JSON.parse(savedTasks);
+  showTasks(tasks);
+} else {
   showTasks(tasks);
 }
 
