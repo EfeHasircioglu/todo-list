@@ -249,7 +249,6 @@ const showTasks = (taskList) => {
     category.classList.add("task-urgency");
     category.classList.add("task-category");
     title.style.display = 'flex-inline'; // title texti overflow olduğu zaman çirkin görünüyor, bu sorun çözülecek
-    checkbox.style.height = '100%';
     additionalContainer.classList.add("additional-container");
     title.textContent = task.text;
     title.style.overflowWrap = "break-word";
