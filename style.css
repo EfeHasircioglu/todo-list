@@ -39,10 +39,12 @@ body.dark-mode header {
 
 body.dark-mode .delete-modal {
   background-color: #121212;
+    border-color: #2a2067;
 }
 
 body.dark-mode .edit-panel {
   background-color: #121212;
+    border-color: #2a2067;
 }
 
 body.dark-mode #editCloseButton {
